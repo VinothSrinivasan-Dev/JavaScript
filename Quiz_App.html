@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        #quiz-container{
+            max-width: 400px;
+            margin: 50px auto;
+            text-align:center;
+            border:2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: sans-serif;
+        }
+        .btn{
+            display: block;
+            width: 100%;
+            margin: 8px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+        .correct{
+            background: #9aeabc;
+        }
+        .incorrect{
+            background:#ffb3b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h2 id="question">Question Text</h2>
+        <div id="answers"></div>
+        <button id="next-btn" class="btn">Next</button>
+    </div>
+
+    <script>
+         const questions =[
+            {
+                question:"Which keyword declares a constant in JavaScript",
+                answers:[
+                    {text: "let", correct:false},
+                    {text: "var", correct:false},
+                    {text: "const", correct:true},
+                    {text: "static", correct:false},
+                ]
+            },
+            {
+                question:"Which symbol used for single line comment in JavaScript",
+                answers:[
+                    {text: "//", correct:true},
+                    {text: "#", correct:false},
+                    {text: "/*", correct:false},
+                    {text: "<!---->", correct:false},
+                ]
+            },
+            {
+                question:"Which of the following is a primitive data type in JavaScript",
+                answers:[
+                    {text: "Array", correct:false},
+                    {text: "Object", correct:false},
+                    {text: "String", correct:true},
+                    {text: "Function", correct:false},
+                ]
+            },
+            {
+                question:"Which keyword declares a function in JavaScript",
+                answers:[
+                    {text: "func", correct:false},
+                    {text: "function", correct:true},
+                    {text: "define", correct:false},
+                    {text: "methos", correct:false},
+                ]
+            },
+            
+         ]
+         const questionElement = document.getElementById("question");
+         const answersBtn= document.getElementById("answers");
+         const nextBtn = document.getElementById("next-btn");
+
+         let currentQuestionIndex =0;
+         let score=0;
+         nextBtn.disabled =true;
+
+         function startQuiz(){
+            nextBtn.removeEventListener('click',startQuiz)
+            currentQuestionIndex=0;
+            score=0;
+            nextBtn.textContent = "Next";
+            showQuestion();
+         }
+
+         function showQuestion(){
+            resetState();
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+            currentQuestion.answers.forEach((ans) =>{
+                  const button = document.createElement('button');
+                  button.textContent = ans.text;
+                  button.classList.add("btn")
+                  answersBtn.appendChild(button);
+                  if(ans.correct){
+                     button.dataset.correct = ans.correct;
+                  }
+                  button.addEventListener('click',selectAnswer)
+            })
+         }
+
+        function selectAnswer(e){
+            const selectedBtn=e.target;
+            const selectedIsCorrect = selectedBtn.dataset.correct === "true";
+             if(selectedIsCorrect){
+                score++;
+             }
+            Array.from(answersBtn.children).forEach(btn =>{
+               const isCorrect = btn.dataset.correct;
+               if(isCorrect){
+                btn.classList.add('correct');
+               }else{
+                btn.classList.add('incorrect')
+               }
+               btn.disabled = true;
+           })
+           console.log(score);
+           nextBtn.disabled = false;
+         }
+      
+         nextBtn.addEventListener("click",()=>{
+            currentQuestionIndex++;
+            resetState();
+            if(currentQuestionIndex < questions.length){
+                showQuestion();
+            }else{
+                showScore();
+            }
+         })
+
+         function showScore(){
+            // resetState();
+            questionElement.textContent =`You Score ${score} out of ${questions.length}`
+            nextBtn.disabled = false;
+            nextBtn.textContent ="Play Again";
+            nextBtn.addEventListener('click',startQuiz)
+         }
+
+         function resetState(){
+            nextBtn.disabled = true;
+            while(answersBtn.firstChild){
+                answersBtn.removeChild(answersBtn.firstChild)
+            }
+         }
+         startQuiz();
+
+
+
+    </script>
+</body>
+</html>

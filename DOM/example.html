@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .class{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- <p id="message"> A Paragraph</p>
+    <p name="para"> This is line 1 </p>
+    <p name="para"> Second line text is difference</p>
+    <p class="class">This para was used for class</p>
+    <p class='class'> get Elemens by class</p>
+    <p> No style was in Class</p> -->
+    <!-- <p>This is a para 1</p>
+    <p>This is a para 2</p>
+    <p>This is a para 3</p>
+    <button>Click 1</button>
+    <button>Click 2</button> -->
+    <!-- <p class="greeting">Hello</p>
+    <p class="greeting">Hiii!!...</p>
+
+    <div id="parentElement">
+        <p>Child 1</p>
+        <p>Child 2</p>
+        <p>Child 3</p>
+
+    </div>
+
+    <div class="main">
+        <p id='note'>This is a node</p>
+
+    </div> -->
+    <div id="rmElement">
+        <p>This element will be removed</p>
+
+    </div>
+    <button onclick=removeElement()>Remove Element</button>
+   <script>
+//1.get element By id
+    //    const element= document.getElementById("message");
+    //    element.innerText ="Hello am from JavaScript DOM Demo";
+    //    element.innerHTML="<button>Click</button>";//Here last line only visible in WebPage (Prev one was overriden)
+
+//2.get Elements Bt Name
+    // const exampleParas = document.getElementsByName("para");
+//    console.log(exampleParas[0]);
+// for(let index=0;index<exampleParas.length;index++){
+//     const element = exampleParas[index];
+//     element.innerText="Short and Sweet!.."
+// }
+//3.Get elements by class Name
+//    const classElements= document.getElementsByClassName('class');
+//    for(let index=0;index<classElements.length;index++){
+//     const element = classElements[index];
+//     element.innerText="Styles Class Example!..";
+//     element.style.fontWeight="bold";
+// }
+//4 . get Elements By Tag Name
+//    const elements=document.getElementsByTagName('p');
+//      for(let index=0;index<elements.length;index++){
+//     const element = elements[index];
+//     element.innerText=`Nex Text for Paragraph ${index+1}`;
+   
+// }
+
+//5.Query Selector
+//    const firstGreet=document.querySelector(".greeting")
+//    console.log(firstGreet.textContent)
+// //6.QuerySelector All   
+//   const allGreet=document.querySelectorAll(".greeting")
+//   allGreet.forEach(el=>console.log(el.textContent))
+
+//7.Accessing Child Elements
+
+// const parent= document.getElementById("parentElement");
+// const children= parent.children;
+// for(let c=0;c<children.length;c++){
+//     const element= children[c];
+//     element.style.fontWeight='bold';
+// }
+//8 Accessing Parent Element from Child
+// const child=document.getElementById('note');
+// console.log(child.parentElement)
+
+//9 Create Element
+//   const paragraphElement= document.createElement('p')
+//   paragraphElement.textContent = "This is a dynamicaly created paragraph";
+//   document.body.appendChild(paragraphElement);
+
+//10 Remove Element
+function removeElement(){
+   const removal=document.getElementById("rmElement");
+   removal.remove()
+}
+
+    </script>
+</body>
+</html>

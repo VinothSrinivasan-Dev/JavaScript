@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling</title>
+    <style>
+        .light{
+
+            background-color: white;
+        }
+        .dark{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="alert('Clicked')">Click Me!..</button>
+
+    <button onclick=showAlert()>Call Function!..</button>
+
+    <button id="btn">This is a button</button>
+
+    <p id="para">Click the  Click Me Btn change this text</p>
+
+    <button id="clickBtn">Click Me !...</button>
+    
+    <div id="mouseEventElement">
+        Hover over me!..
+    </div>
+
+    <!--KeyBoard Events-->
+    <label for="textInput">Type Something:</label>
+    <input type="text" id="textInput">
+
+    <!-- Event Delgation-->
+
+    <!--
+    Single Event Listner was written in parent Element tht will be rooted to their children
+    -->
+<ul id="list">
+    <li>Home</li>
+    <li>About</li>
+    <li>Contact</li>
+</ul>
+
+<!--Class List manipulation-->
+<button id="btn">Toggle Theme</button>
+
+    <script>
+        function showAlert(){
+            alert("Clicked and JavaScript Function Called!..")
+        }
+
+       const btnElm= document.getElementById("btn")
+       btnElm.addEventListener("click",function(event){
+        alert("Clicked and Listen by DOM "+event.type)
+       })
+
+      const paraEle= document.getElementById("para");
+      const btnElement= document.getElementById("clickBtn");
+      btnElement.addEventListener('click',mouseClickHandler)
+
+      function mouseClickHandler(){
+        paraEle.textContent = "Text Changed!.."
+      }
+
+      const hoverEle=document.getElementById("mouseEventElement");
+      hoverEle.addEventListener('mouseover',function(){
+        hoverEle.textContent ="Mouse Over!..."
+      })
+      hoverEle.addEventListener('mouseout',function(){
+        hoverEle.textContent ="Hover over me!.."
+      })
+
+     <!--KeyBoard Events-->
+     const textInput=document.getElementById("textInput");
+     textInput.addEventListener("keydown",function(event){
+        console.log("KeyDown Happened : "+event.key)
+     });
+      textInput.addEventListener("keyup",function(event){
+        console.log("KeyUp Happened : "+event.key)
+     });
+      
+     const list = document.getElementById("list");
+     list.addEventListener('click',function(e){
+        if(e.target.tagName == 'LI'){
+            console.log("You Clicked ",e.target.textContent)
+        }
+     })
+
+    const button=document.getElementById("btn");
+    document.body.classList.add("light");
+    button.addEventListener('click',(e)=>{
+        document.body.classList.add('dark');
+         document.body.classList.remove("light");
+    })
+  
+     
+    </script>
+</body>
+</html>

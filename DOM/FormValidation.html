@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validations</title>
+</head>
+<body>
+    <form id="loginform">
+        <input type="text" placeholder="username" id="username">
+        <input type="email" placeholder="email" id="email">
+
+
+        <button type="submit"> Submit </button>
+
+    </form>
+
+    <script>
+        const form = document.getElementById("loginform");
+
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            //Collect the data
+            const username= document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+
+            //validations
+
+            if(!username || !email){
+                alert('Please fill in all fields')
+                return;
+            }
+            if(!email.includes("@")){
+                alert('Invalid Email address');
+                    return;
+                
+            }
+            console.log("Form Submitted!..",{username,email})
+
+        })
+    </script>
+</body>
+</html>
