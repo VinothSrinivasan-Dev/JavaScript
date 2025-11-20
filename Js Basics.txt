@@ -1,0 +1,243 @@
+/*
+Everything in javascript stored in Execition Context 
+
+It has 2 components 
+
+1. Memory(Varaiable Environment)
+  --> here only all our varaible and functions will be there 
+2.Code(Thread Of Execution)
+   --> Here Our code will be run line by line 
+
+   
+Javascript Synchoronus and single - threaded langugae
+
+
+What happens inside the JS Engine when you trigger a JS Program 
+
+*/
+
+//Sample Program to Understanding the Js engine 
+var n =2;
+function square(n){
+  var ans= n*n;
+  return ans;
+}
+
+var square2 = square(2);
+var square4= square(4);
+
+console.log(square2,square4)
+
+/*Two components will be created 
+
+
+1.Memory Creation phase  
+ 
+Note : if it is varaibale assign as undefined 
+If it a func store whole function 
+
+n  : undefined 
+square : {..whole code of func..}
+
+square2: undefined
+square4:: undeined
+
+**************************************
+
+2. Code Execution Phase
+(Line by line code will be run )
+
+Now in Memory Creation Phase,
+n: 2
+
+In function invocation of sqaure2 
+
+new Execution context wil be created in Code  Execution Phase 
+
+Phase 1: (Memory allocation)
+num: undefined
+ans: undefined 
+
+Phase 2: (Code Execution phase)
+Now in phase 2 values are assigned 
+num : 2
+ans : 4
+
+Note :  Whole execuion context inside code phase wil be deleted .
+it will run based on how many fns invoked
+
+**************************************
+Values are assinged
+square2: 4
+square4: 16
+
+
+************************************
+Once evenrything run whole execution context will be deleted ...
+
+It handled the Execution context creation ,deletion knows as Call Stack 
+
+Call Stack --> its a Stack (Bottonof stacj we are have  Global Execution context)
+--> Call Stack maintains the order of Execution of execution contexts
+Call Stack known for 
+1.Execution Context Stack
+2.Program Stack
+3.Control Stack
+4.Runtime Stack
+5.Machine stack 
+
+*/
+// Varaiables and Functions..
+
+// getName();
+console.log(x);
+console.log(getName)
+
+
+var x=7;
+
+function getName(){
+  console.log("Js Recap");
+}
+
+var getName2 = function(){
+  //in this case also just like a varaible
+}
+// console.log(getName);
+console.log(x)
+
+//Here One thing we need to under stand before initializing the function we are invoking we are getting the output as we expected 
+//But for variable  not defined if we are not defini x means , if you are defins var x=7; means t will undefined.
+
+
+//if we are accesing arrow fn before it initialzes 
+console.log(getNameArrow);//getting getName is not a function act as varible only since we are storing into value
+
+var getNameArrow = ()=>{
+  console.log("Arrow Function .Js Recap");
+}
+
+
+//Function Works
+var x = 1;
+a();
+b();
+console.log(x);
+
+function a(){
+  var x=10;
+  console.log(x);
+}
+
+function b(){
+  var x=100;
+  console.log(x);
+}
+
+// Window and this Keyword
+
+//Window -- Its a global objecy which is created along with Global Execution Contxt
+
+// at global level this === window
+
+//any variable outside the function it was accesible by globally using window.va and this.
+
+var a=10;
+console.log(window.n);
+
+*********************************************
+
+//Lexical  Example
+function a(){
+  console.log(b);
+}
+var b=10;
+a();
+
+//output :10
+
+function a1(){
+  var d=10;
+  c();
+  function c(){
+
+  }
+}
+
+a1();
+console.log(d);//d is not defined 
+
+//Lexical Environmenr is a local memory and its  reference to its lexical environment parent 
+
+
+******************************************************
+// Let and Const 
+
+//Let & const in JavaScript behave differently when they are Hoisted. Understanding the difference between var, let and const in JS will help you write better code. const and let are in  a Temporal Dead Zone until they are initialized some value. You might encounter SyntaxError, TypeError or ReferenceError while using them in your code.
+// console.log(b);
+
+let a=10;
+console.log(a);
+// var b=100;
+
+//let and const are allocated memory in different memory space
+
+//Here var alone attached to window but let and const are not attached to global scope becox it was present in differnt memory
+
+//In let and const we can't do the dupliation declration
+
+const b = 1000;
+
+//In const we cannot assign value later after declartion
+
+//Type Error 
+// b= 90; 
+
+//Syntax Error 
+// const v;
+
+
+//Let and const are block scope 
+
+//{} -- Block  is also known as compound statement
+let y = 900;
+if(true){
+//What are variable and functions are access inside this block called block scope.
+var x =10;
+let y =20;
+const z= 30;
+console.log(x,y,z);//Here x was shadowed and also modified the outer x value 
+}
+console.log(y);
+
+//Here var was shadowed and update the value 
+//but let and const inside block differnt value outside the block different value 
+
+
+***********************************************
+
+
+//illega Shadowing let to var 
+
+let a=10;
+{
+  let a=20;
+  console.log(a);
+}
+console.log(a);
+
+//Lexical Scope
+
+const b= 10;
+{
+  const b=20;
+  {
+    // const b =30
+ 
+  }
+   console.log(b);
+}
+
+//Arrow function scope
+
+//Here also same scope like other 
