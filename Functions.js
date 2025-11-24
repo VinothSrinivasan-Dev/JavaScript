@@ -3,7 +3,7 @@
 //Function Statement also known as Function Declaration 
 
 function a(){
-  console.log("a called")
+  console.log("a calßled")
 }
 
 a();
@@ -42,7 +42,7 @@ xy(1,2) ;
 
 //First class Functions
 //Function inside another function passed as an argument known as first class functions
-//Ability to use the functions as values  known as first class functions
+//Ability to use the functions as values   known as first class functions
 var f=function(p1){
     // console.log(p1);
     return function(){
